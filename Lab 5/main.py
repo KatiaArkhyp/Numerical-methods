@@ -4,7 +4,7 @@ from numerical_solution import euler, euler_c, runge_kutta, median_error
 
 
 def y_exact(x):
-    return x ** 2 + x + 1 / x
+    return x ** 2 + x + (1 / x)
 
 
 def f(x, y):
@@ -27,9 +27,13 @@ for i in range(len(x_e)):
     error_e = abs(y_e[i][0] - y_exact_vals[i])
     error_ec = abs(y_ec[i][0] - y_exact_vals[i])
     error_rk = abs(y_rk[i][0] - y_exact_vals[i])
+
     print("{:^6.1f} {:^15.6f} {:^15.6f} {:^15.6f} {:^15.6f} {:^15.6f}"
           .format(x_e[i], y_e[i][0], y_ec[i][0], y_rk[i][0], y_exact_vals[i],
                   median_error(error_e, error_ec, error_rk)))
+    print("{:^6.99s} {:^15.6f} {:^15.6f} {:^15.6f}".format("Error", error_e, error_ec, error_rk))
+    print()
+
 
 x_exact = np.linspace(1, 2, 101)
 y_exact_vals = y_exact(x_exact)
