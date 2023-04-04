@@ -30,6 +30,16 @@ def gauss_jordan_method():
             A[j] = A[j] - factor * A[i]
             B[j] = B[j] - factor * B[i]
 
+    for i in range(4):
+        pivot = A[i, i]
+        for j in range(4):
+            if i != j:
+                factor = A[j, i]
+                A[j] = A[j] - factor * A[i]
+                B[j] = B[j] - factor * B[i]
+        A[i] = A[i] / pivot
+        B[i] = B[i] / pivot
+
     print("Results with Gauss-Jordan method: ")
     for k in range(4):
         print(f"x{k + 1} = {B[k]:.2f}")
