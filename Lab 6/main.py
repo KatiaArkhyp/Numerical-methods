@@ -61,21 +61,22 @@ def seidel_method():
     x0 = np.zeros(n)
 
     max_iter = 100
-    tolerance = 0.001
+    eps = 0.0001
 
     for i in range(max_iter):
         x1 = np.copy(x0)
         for j in range(n):
             x1[j] = (B[j] - np.dot(A[j, :j], x1[:j]) - np.dot(A[j, j + 1:], x0[j + 1:])) / A[j, j]
 
-        if np.linalg.norm(x1 - x0) < tolerance:
+        if np.linalg.norm(x1 - x0) < eps:
             break
         x0 = np.copy(x1)
         print("Iteration", i + 1, x0)
-
-    print("\nResults with Seidel method: ")
-    print([f"{x:.2f}" for x in x1])
     print("Number of iterations:", i + 1)
+    print("\nResults with Seidel method: ")
+    for i, x in enumerate(x1):
+        print(f"x{i + 1} = {x:.2f}")
+
 
 
 def main():
